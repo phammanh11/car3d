@@ -7,9 +7,13 @@ import { carAudio } from '../utils/soundEngine'
 
 const DRACO_PATH = '/draco/'
 
-SUPERCAR_CATALOG.forEach((car) => {
-  useGLTF.preload(car.modelUrl, DRACO_PATH)
-})
+try {
+  SUPERCAR_CATALOG.forEach((car) => {
+    useGLTF.preload(car.modelUrl, DRACO_PATH)
+  })
+} catch (preloadErr) {
+  console.warn('Non-blocking 3D preload warning:', preloadErr)
+}
 
 /**
  * Tạo Texture Gradient sắc nét cho tia lửa Afterburner ống xả (không dùng khối hình học đơn sắc thô)
